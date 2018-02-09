@@ -24,6 +24,18 @@ public class InputMask {
 		$wnd.Inputmask(alias).mask(element);
     }-*/;
 
+    public final native void mask(String alias, Mask mask, Element element)/*-{
+		$wnd.Inputmask(alias, mask).mask(element);
+    }-*/;
+
+    public final native String format(String value, Alias alias)/*-{
+		return $wnd.Inputmask.format(value, alias);
+    }-*/;
+
+    public final native String format(String value, Mask mask)/*-{
+		return $wnd.Inputmask.format(value, mask);
+    }-*/;
+
     public final native void mask(Alias alias, Mask mk, Element element)/*-{
 		$wnd.Inputmask(alias, mk).mask(element);
     }-*/;
