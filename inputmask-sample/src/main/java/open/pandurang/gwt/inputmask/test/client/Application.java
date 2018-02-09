@@ -2,7 +2,10 @@ package open.pandurang.gwt.inputmask.test.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 
@@ -30,7 +33,7 @@ public class Application implements EntryPoint {
         InputMask inpm = new InputMask();
         inpm.mask("email", tb.getElement());
         inpm.mask("aa-999-**", mtb.getElement().getFirstChildElement());
-        Alias op = Alias.create();
+        final Alias op = Alias.create();
         op.setAlias("datetime");
         op.setInputFormat("dd/mm/yyyy");
         Mask msk = Mask.create();
@@ -72,5 +75,27 @@ public class Application implements EntryPoint {
             }
         });
         inpm.mask(mask, randomMask.getElement().getFirstChildElement());
+        
+        Button btn = new Button("TEST");
+        RootPanel.get().add(btn);
+        btn.addClickHandler(new ClickHandler() {
+            
+            @Override
+            public void onClick(ClickEvent event) {
+                // TODO Auto-generated method stub
+                GWT.log("Date value - > " +  date.getValue());
+                if(inpm.isValid(date.getValue(), op)) {
+                    GWT.log("This is valid");
+                }else {
+                    GWT.log("This is invalid");
+                }
+                GWT.log("sample Mask  value - > " +  randomMask.getValue());
+                if(inpm.isValid(randomMask.getValue(), mask)) {
+                    GWT.log("This sample is valid");
+                }else {
+                    GWT.log("This sample is invalid");
+                }
+            }
+        });
     }
 }

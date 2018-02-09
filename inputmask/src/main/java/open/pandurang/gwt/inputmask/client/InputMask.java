@@ -35,4 +35,12 @@ public class InputMask {
     public final native void mask(Mask mask, Element element)/*-{
 		$wnd.Inputmask(mask).mask(element);
     }-*/;
+
+    public final native boolean isValid(String input, Mask mask)/*-{
+		return $wnd.Inputmask.isValid(input, mask);
+    }-*/;
+
+    public final native boolean isValid(String input, Alias alias)/*-{
+		return $wnd.Inputmask.isValid(input, alias);
+    }-*/;
 }
